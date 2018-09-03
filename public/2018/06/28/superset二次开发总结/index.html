@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Atom">
+    
+    
+    
+    
+    
+    
+    <title>superset二次开发总结 | 狂奔的泰迪熊</title>
+    <!-- inject:style -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-- endinject -->
+    <style>
+        .cube-loading {
+            top: 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('/images/lg/loading.gif') no-repeat center center;
+            background-color: rgba(0,0,0,.7);
+        }
+
+        .cube-loading.out {
+            display: none;
+        }
+
+        .cube-loading:before {
+            display: block;
+            content: 'Loading';
+            position: relative;
+            width: 100%;
+            top: 50%;
+            right: -50%;
+            color: #fff;
+        }
+
+        @media(max-width: 768px) {
+            .cube-loading:before {
+                font-size: 1.2em;
+                transform: translate(-24px,20px);
+                -webkit-transform: translate(-24px,20px);
+                -o-transform: translate(-24px,20px);
+                -ms-transform: translate(-24px,20px);
+            }
+        }
+
+        @media(min-width: 768px) {
+            .cube-loading:before {
+
+            }
+        }
+    </style>
+    
+</head>
+    <body>
+        
+                <div class="cube-body">
+                    <nav id="cube-top-memu" class="cube-menu">
+    <ul class="cube-menu-collapse">
+        
+        <li>
+            <i class="cube-icon cube-icon-home" aria-hidden="true"></i>
+            <a href="/">首页</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-archive" aria-hidden="true"></i>
+            <a href="/archives">归档</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-tags" aria-hidden="true"></i>
+            <a href="/tags">标签</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
+            <a href="/resume">个人简历</a>
+        </li>
+        
+    </ul>
+</nav>
+<nav class="cube-side-menu" id="cube-side-menu">
+    <ul class="cube-menu-list">
+        
+        <li>
+            <a class="lrc-control">Open Lyrics</a>
+        </li>
+        
+        <li>
+            <a class="scroll-to-top">Top</a>
+        </li>
+    </ul>
+</nav>
+                        <header class="cube-header" id="cube-header">
+    <img src=" http://cube-1252774894.cosgz.myqcloud.com/background.jpg " alt="头部背景图片">
+    
+    <div class="cube-type">
+        <span class="cube-typed-title">不积小流无以成江海</span>
+        <span class="cube-typed-cursor">|</span>
+    </div>
+    
+</header>
+
+    <style>
+        nav.cube-menu:before {
+            content: '';
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 44px;
+        
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+        
+            z-index: -1;
+            background-image: url('http://cube-1252774894.cosgz.myqcloud.com/background.jpg');
+            background-repeat: no-repeat;
+            background-position: center -356px;
+            background-size: cover;
+            background-color: transparent;
+        }
+
+        header.cube-background.cube-header-background {
+            visibility: hidden;
+            background-image: url('http://cube-1252774894.cosgz.myqcloud.com/background.jpg');
+            background-position: center -400px;
+        }
+    </style>
+    <header class="cube-background cube-header-background">
+        
+        <div class="cube-type">
+            <span class="cube-typed-title">不积小流无以成江海</span>
+            <span class="cube-typed-cursor">|</span>
+        </div>
+        
+    </header>
+    <div class="load-header-background"></div>
+    <script>
+        (function (window) {
+
+            window.headerModule = {}
+            window.headerModule.image = {
+                width: '2000',
+                height: '1080'
+            }
+
+        })(window)
+    </script>
+    
+                            <div class="cube-content">
+                                <div class="cube-left">
+                                    <div class="cube-article">
+    <h1 class="title">superset二次开发总结</h1>
+    
+    <div class="cube-article-header">
+        <div class="cube-article-date">
+            <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+            <!-- moment.js对象 -->
+            2018-06-28
+        </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/js/">#js</a>
+    
+    <a href="/tags/superset/">#superset</a>
+    
+    <a href="/tags/python/">#python</a>
+    
+    <a href="/tags/flask/">#flask</a>
+    
+</div>
+    </div>
+    
+    <div class="cube-article-content cube-markdown">
+        
+        <h2 id="superset二次开发总结：未完待续…"><a href="#superset二次开发总结：未完待续…" class="headerlink" title="superset二次开发总结：未完待续…."></a>superset二次开发总结：未完待续….</h2><h3 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h3><p>开发心得：<br>    superset是基于flask开发的一套可视化模板，好处：1.快速生成图表，2.集成了多种数据库环境，相对于复杂的图表展示来说可谓是利器,刚开始接到这个superset的时候一脸懵逼，都**的python文件？喂，我不会啊！抱怨可以有，但毛用没有，做还是得做的。哭…. superset中有很多文件相互调用，缕清相互的关系是需要费相当的精力和时间。我太菜了，我硬是看了三四天才在第五天完全看明白。哇，真的菜~~~~ 我总结一下我踩的坑 ，希望可以给你们一些帮助</p>
+<p>掘金： <a href="https://juejin.im/post/5b399a4ee51d455898532b65" target="_blank" rel="noopener">https://juejin.im/post/5b399a4ee51d455898532b65</a></p>
+<h2 id="python服务器启动"><a href="#python服务器启动" class="headerlink" title="python服务器启动"></a>python服务器启动</h2><pre><code>路径:
+    cd F:\Anaconda\Lib\site-packages\superset\bin&gt;
+命令：
+    python superset runserver -d 
+</code></pre><h3 id="修改文案-汉化"><a href="#修改文案-汉化" class="headerlink" title="修改文案 汉化"></a>修改文案 汉化</h3><pre><code>执行路径： 
+    /superset/transitions
+作用： 
+    .po文件转.json文件
+命令：
+    pybabel compile -d translations
+</code></pre><h3 id="本地静态目录"><a href="#本地静态目录" class="headerlink" title="本地静态目录"></a>本地静态目录</h3><pre><code>/static
+    ---src                          //业务组件
+    ---stylesheets                  //样式文件（需要注意的两个文件）
+        --less
+            --cosmo
+                --bootswatch.less   // 修改样式的地方
+        --superset.less             //  修改全局样式的地方
+
+
+注意： 本地安装开发环境的时候，react版本最好不要升级,坑也挺多,就按照他的版本来.
+       如果你非要升级的话，有几点需要提醒你：
+
+        1. prop-types 会提示相关报错, 问题在于react版本。@15和@16版本中prop-types的差异,升级的react版本到@16.**的注意一下
+
+        2.会提示Cannot find module &apos;react/lib/*****&apos;等未知模块,想要好办法？二话不说丢给你一个网站  https://www.jianshu.com/p/43b7db635f8c 按步骤运行！
+
+        3.想找react-router? 找不到的，他压根就不是spa, 虽然在react写的 （此时劝诫自己要压住怒火）提示： superset/views/core.py   // 模块注册和页面跳转
+</code></pre><h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><pre><code>superset/templates
+
+flash_appbuilder/templates
+
+注：如果这里模板调用找不到的话 在和superset同级的flash_appbuilder/templates里面找，
+    这两个文件夹是可以相互调用的.（千万注意，这是一个坑~坑死我了~~~） 
+    两个模板有很多不起作用的模板，不知道为什么要留在里面，增加了很多不必要的难度
+</code></pre><h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><pre><code>/views
+    ---core.py  
+        class    // 创建视图对象，
+        appbuilder.add_view(   // 注册路由文件    
+                    视图对象，
+                    mtrid, 
+                    msgstr, 
+                    图标，...  
+                )  
+        appbuilder.add_link(    //添加子路由
+                    mtrid       //字符串id 
+                    label       //名称
+                    href        // 跳转路径
+                    category    // 属于哪个类目
+                    category_label  // 类目名称
+        )
+</code></pre>
+    </div>
+</div>
+
+<div class="cube-article-nav">
+    <ul>
+        
+        <li class="prev">
+            <a href="/2018/07/04/webpack优化打包manifest-json报错/">
+                <i class="cube-icon cube-prev" aria-hidden="true"></i>
+                webpack优化打包manifest.json报错
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2018/06/26/博客建立第一天/">
+                博客建立第一天
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+
+
+
+                                </div>
+                                <div class="cube-right">
+                                    
+
+<div class="cube-search cube-sidebar" id="cube-search">
+    <div class="search-container">
+        <input type="text" placeholder="Search" class="cube-search-input" id="cube-search-input">
+        <i class="cube-icon cube-icon-search cube-search-submit" aria-hidden="true"></i>
+    </div>
+    <!-- TODO 通过给window赋一个全局变量，通过脚本赋值 -->
+</div>
+<script>
+    (function (window) {
+        'use strict';
+        window.searchModule = {}
+        window.searchModule.JSONUrl = '/content.json'
+        window.searchModule.rootUrl = '/'
+    })(window)
+</script>
+<div class="cube-search-form">
+    <div class="cube-search-control">
+        <input type="text" placeholder="Search" class="search-input">
+        <a class="close-button">
+            <i class="cube-icon cube-close" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="cube-search-result"></div>
+</div>
+
+
+<div class="cube-author cube-sidebar" id="cube-author">
+    
+    
+    <span>Atom</span>
+    
+    
+    <div class="count">
+        <a class="count articles"><span>13</span>Article</a>
+        <a class="count tags"><span>14</span>Tags</a>
+        <a class="count categories"><span>0</span>Categories</a>
+    </div>
+</div>
+
+
+
+<div class="cube-music cube-sidebar" id="cube-music">
+    <div class="cube-player aplayer" id="cube-player"></div>
+</div>
+<script>
+    (function (window) {
+        window.musicModule = {}
+        window.musicModule.musicConfig = '{"narrow":false,"autoplay":false,"showlrc":3,"theme":"#b7daff","mutex":true,"mode":"circulation","preload":"auto","listmaxheight":"513px","music":[{"title":"Dear friends","author":"TRIPLANE","url":"http://cube-1252774894.cosgz.myqcloud.com/music/source/TRIPLANE - Dear friends.mp3","lrc":"http://cube-1252774894.cosgz.myqcloud.com/music/lrc/Dear friends - TRIPLANE.lrc","pic":"http://cube-1252774894.cosgz.myqcloud.com/music/image/TRIPLANE - Dear friends.jpg"}]}'
+        window.musicModule.lrcConfig = {
+            open: 'Open Lyrics',
+            close: 'Close Lyrics'
+        }
+    })(window)
+</script>
+
+
+
+<div class="cube-recent-posts cube-sidebar" id="cube-recent-posts">
+    <div class="title">
+        <a>Recent Posts</a>
+    </div>
+    <ul class="list">
+        
+        
+        <li>
+            <!-- TODO 如果文章要显示图片，那么在front-matter上添加preview属性(url or path) -->
+            
+            <div class="normal">
+                <p class="index first">
+                    <span>1</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/09/03/项目中必会的git操作/" title="项目中必会的git操作">项目中必会的git操作</a>
+                </p>
+            </div>
+            
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>2</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/09/01/基于koa2-mysql进行数据库的增删改查/" title="基于koa2+mysql进行数据库的增删改查">基于koa2+mysql进行数据库的增删改查</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>3</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/08/03/flutter环境安装/" title="flutter环境安装">flutter环境安装</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>4</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/07/23/生成时间数组/" title="生成时间数组">生成时间数组</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>5</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/07/07/2018定制一下自己的学习路线/" title="2018定制一下自己的学习路线">2018定制一下自己的学习路线</a>
+                </p>
+            </div>
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+
+
+
+<div class="cube-links cube-sidebar" id="cube-links">
+    <div class="title">
+        <a>Links</a>
+    </div>
+    <ul class="list">
+        
+        <li>
+            
+            
+            <img src="http://cube-1252774894.cosgz.myqcloud.com/links/GitHub.png">
+            
+            <a href="https://github.com/crazyTedy" target="_blank">GitHub</a>
+        </li>
+        
+        <li>
+            
+            
+            <img src="https://b-gold-cdn.xitu.io/v3/static/img/logo.a7995ad.svg">
+            
+            <a href="https://juejin.im/user/59c61f24f265da0659432547" target="_blank">掘金</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+<div class="cube-friend-links cube-sidebar" id="cube-friend-links">
+    <div class="title">
+        <a>Friend Links</a>
+    </div>
+    <ul class="list">
+        
+        <li>
+            <!-- TODO change avatar.png to friend.png-->
+            <img src="https://avatars0.githubusercontent.com/u/26136124?s=40&amp;v=4">
+            <a href="http://crazytedy.cn/" target="_blank">我的主页</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+                                </div>
+                            </div>
+                </div>
+                <footer class="cube-footer">
+                    
+© 2017 Atom
+
+<br>
+Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+                </footer>
+                
+                    <!-- inject:script -->
+                    <script src="/js/script.js"></script>
+                    <!-- endinject -->
+                    <div class="cube-loading out"></div>
+    </body>
+
+    </html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Atom">
+    
+    
+    
+    
+    
+    
+    <title>项目中必会的git操作 | 狂奔的泰迪熊</title>
+    <!-- inject:style -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-- endinject -->
+    <style>
+        .cube-loading {
+            top: 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('/images/lg/loading.gif') no-repeat center center;
+            background-color: rgba(0,0,0,.7);
+        }
+
+        .cube-loading.out {
+            display: none;
+        }
+
+        .cube-loading:before {
+            display: block;
+            content: 'Loading';
+            position: relative;
+            width: 100%;
+            top: 50%;
+            right: -50%;
+            color: #fff;
+        }
+
+        @media(max-width: 768px) {
+            .cube-loading:before {
+                font-size: 1.2em;
+                transform: translate(-24px,20px);
+                -webkit-transform: translate(-24px,20px);
+                -o-transform: translate(-24px,20px);
+                -ms-transform: translate(-24px,20px);
+            }
+        }
+
+        @media(min-width: 768px) {
+            .cube-loading:before {
+
+            }
+        }
+    </style>
+    
+</head>
+    <body>
+        
+                <div class="cube-body">
+                    <nav id="cube-top-memu" class="cube-menu">
+    <ul class="cube-menu-collapse">
+        
+        <li>
+            <i class="cube-icon cube-icon-home" aria-hidden="true"></i>
+            <a href="/">首页</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-archive" aria-hidden="true"></i>
+            <a href="/archives">归档</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-tags" aria-hidden="true"></i>
+            <a href="/tags">标签</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
+            <a href="/resume">个人简历</a>
+        </li>
+        
+    </ul>
+</nav>
+<nav class="cube-side-menu" id="cube-side-menu">
+    <ul class="cube-menu-list">
+        
+        <li>
+            <a class="lrc-control">Open Lyrics</a>
+        </li>
+        
+        <li>
+            <a class="scroll-to-top">Top</a>
+        </li>
+    </ul>
+</nav>
+                        <header class="cube-header" id="cube-header">
+    <img src=" http://cube-1252774894.cosgz.myqcloud.com/background.jpg " alt="头部背景图片">
+    
+    <div class="cube-type">
+        <span class="cube-typed-title">不积小流无以成江海</span>
+        <span class="cube-typed-cursor">|</span>
+    </div>
+    
+</header>
+
+    <style>
+        nav.cube-menu:before {
+            content: '';
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 44px;
+        
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+        
+            z-index: -1;
+            background-image: url('http://cube-1252774894.cosgz.myqcloud.com/background.jpg');
+            background-repeat: no-repeat;
+            background-position: center -356px;
+            background-size: cover;
+            background-color: transparent;
+        }
+
+        header.cube-background.cube-header-background {
+            visibility: hidden;
+            background-image: url('http://cube-1252774894.cosgz.myqcloud.com/background.jpg');
+            background-position: center -400px;
+        }
+    </style>
+    <header class="cube-background cube-header-background">
+        
+        <div class="cube-type">
+            <span class="cube-typed-title">不积小流无以成江海</span>
+            <span class="cube-typed-cursor">|</span>
+        </div>
+        
+    </header>
+    <div class="load-header-background"></div>
+    <script>
+        (function (window) {
+
+            window.headerModule = {}
+            window.headerModule.image = {
+                width: '2000',
+                height: '1080'
+            }
+
+        })(window)
+    </script>
+    
+                            <div class="cube-content">
+                                <div class="cube-left">
+                                    <div class="cube-article">
+    <h1 class="title">项目中必会的git操作</h1>
+    
+    <div class="cube-article-header">
+        <div class="cube-article-date">
+            <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+            <!-- moment.js对象 -->
+            2018-09-03
+        </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/git/">#git</a>
+    
+    <a href="/tags/团队协作/">#团队协作</a>
+    
+</div>
+    </div>
+    
+    <div class="cube-article-content cube-markdown">
+        
+        <p>不管是大项目还是小项目，项目托管已经是必要的掌握技能。现在总结一下平时遇到的那些git命令</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h3><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍:"></a>介绍:</h2><pre><code>1. 初始化仓库
+
+    个人仓库
+
+    fork的仓库
+
+
+2. 代码更新、提交、合并
+
+    个人代码更新
+
+    团队代码合并，更新， 提交
+
+
+3. 仓库分支（branch）的使用
+
+    创建分支
+
+    切换分支
+
+    删除分支
+
+    合并分支
+</code></pre><h1 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h1><p>  一般我们创建一个项目的时候，首先要在自己的gitLab或者github上面 New repositories 一个新的仓库名字 Name</p>
+<pre><code># 个人仓库（最高权限）
+
+    初始化操作三连 唰~唰~唰~
+
+    // 创建一个.git 配置文件夹
+
+        git init 
+
+    // 添加仓库地址信息，你就理解成登录要设置账号密码
+
+        git remote add origin &apos;仓库地址.git&apos;
+
+    // 获取本地更新并上传
+
+        git status 
+
+        git add .
+
+        git commit -m &apos;提交信息&apos;
+
+        git push origin master
+
+
+# fork的仓库
+
+    点击`fork`复制别人的项目到自己的仓库，此时你的项目属于别人项目的`分支`
+</code></pre><h1 id="代码更新、提交、合并"><a href="#代码更新、提交、合并" class="headerlink" title="代码更新、提交、合并"></a>代码更新、提交、合并</h1><h3 id="个人代码更新"><a href="#个人代码更新" class="headerlink" title="个人代码更新"></a>个人代码更新</h3><pre><code>git pull origin &apos;分支名&apos;
+</code></pre><h3 id="团队代码合并、-更新"><a href="#团队代码合并、-更新" class="headerlink" title="团队代码合并、 更新"></a>团队代码合并、 更新</h3><h4 id="假设："><a href="#假设：" class="headerlink" title="假设："></a>假设：</h4><pre><code>团队主仓库主分支 `upstream`
+
+个人仓库主分支 `master`
+</code></pre><h4 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h4><pre><code>此时你本地仓库的`master`分支由`upstream`仓库fork出来的。
+</code></pre><h4 id="注册主仓库地址：-需要注册upstream的仓库地址到-git-config中，和注册个人仓库操作类似。"><a href="#注册主仓库地址：-需要注册upstream的仓库地址到-git-config中，和注册个人仓库操作类似。" class="headerlink" title="注册主仓库地址：    需要注册upstream的仓库地址到.git/config中，和注册个人仓库操作类似。"></a>注册主仓库地址：    需要注册<code>upstream</code>的仓库地址到.git/config中，和注册个人仓库操作类似。</h4><pre><code>git remote add `upstream` 分支地址.git 
+</code></pre><h4 id="git-config配置"><a href="#git-config配置" class="headerlink" title=".git/config配置"></a>.git/config配置</h4><pre><code>.git/config配置：
+
+    [core]
+        repositoryformatversion = 0
+        filemode = false
+        bare = false
+        logallrefupdates = true
+        symlinks = false
+        ignorecase = true
+
+    [remote &quot;origin&quot;]
+        url = &apos;本地仓库地址&apos;
+        fetch = +refs/heads/*:refs/remotes/origin/*
+
+    [branch &quot;master&quot;]
+        remote = origin
+        merge = refs/heads/master
+
+    [remote &quot;upstream&quot;]
+        url = &apos;团队仓库地址&apos;
+        fetch = +refs/heads/*:refs/remotes/upstream/*
+</code></pre><h4 id="获取upstream更新"><a href="#获取upstream更新" class="headerlink" title="获取upstream更新"></a>获取<code>upstream</code>更新</h4><pre><code>1. 先在本地仓库创建一个分支，并且换到创建的分支上. 原因是先获取远程更新，然后合并到`master`上
+
+    git branch dev-upstream
+
+    git checkout dev-upstream
+
+2. 获取远程`upstream`更新, 此时的分支正在 `dev-upstream`上，：
+
+    git remote update `upstream`
+</code></pre><h4 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h4><pre><code>3. 合并 `dev-upstream` 更新到 `master` 上 , 此时的 `dev-upstream` 已经获取 `upstream` 更新的内容，：
+
+    git merge dev-upstream/master  或者  git rebase dev-upstream/master
+</code></pre><h4 id="提交到主仓库"><a href="#提交到主仓库" class="headerlink" title="提交到主仓库"></a>提交到主仓库</h4><pre><code>4. 切换到主分支，提交更新至本地仓库
+
+    git branch master
+
+    git status
+
+    git add .
+
+    git commit -m &apos;合并分支&apos;
+
+    git push origin master
+</code></pre><h4 id="Merge给管理员"><a href="#Merge给管理员" class="headerlink" title="Merge给管理员"></a>Merge给管理员</h4><pre><code>5. New Merger 提交到项目管理员
+</code></pre><h1 id="仓库分支（branch）的使用"><a href="#仓库分支（branch）的使用" class="headerlink" title="仓库分支（branch）的使用"></a>仓库分支（branch）的使用</h1><pre><code>创建分支
+
+    git branch &apos;分支名&apos;
+
+切换分支
+
+    git checkout &apos;分支名&apos;
+
+删除分支
+
+    git branch -d &apos;分支名&apos;
+
+合并分支
+
+    git merge(rebase) 分支/目标分支
+</code></pre><h2 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h2><p>这些基本涵盖了常规的git操作， 和团队合作方式的操作。</p>
+<p>当然还有一些仓库的权限操作，生成ssh key 和 更新 ssh的方式。网上有很多就不单独介绍。</p>
+<p>我发现写博客可以让自己的思路更清晰，激发自己的学习积极性。。</p>
+
+    </div>
+</div>
+
+<div class="cube-article-nav">
+    <ul>
+        
+        
+        <li class="next">
+            <a href="/2018/09/01/基于koa2-mysql进行数据库的增删改查/">
+                基于koa2+mysql进行数据库的增删改查
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+
+
+
+                                </div>
+                                <div class="cube-right">
+                                    
+
+<div class="cube-search cube-sidebar" id="cube-search">
+    <div class="search-container">
+        <input type="text" placeholder="Search" class="cube-search-input" id="cube-search-input">
+        <i class="cube-icon cube-icon-search cube-search-submit" aria-hidden="true"></i>
+    </div>
+    <!-- TODO 通过给window赋一个全局变量，通过脚本赋值 -->
+</div>
+<script>
+    (function (window) {
+        'use strict';
+        window.searchModule = {}
+        window.searchModule.JSONUrl = '/content.json'
+        window.searchModule.rootUrl = '/'
+    })(window)
+</script>
+<div class="cube-search-form">
+    <div class="cube-search-control">
+        <input type="text" placeholder="Search" class="search-input">
+        <a class="close-button">
+            <i class="cube-icon cube-close" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="cube-search-result"></div>
+</div>
+
+
+<div class="cube-author cube-sidebar" id="cube-author">
+    
+    
+    <span>Atom</span>
+    
+    
+    <div class="count">
+        <a class="count articles"><span>13</span>Article</a>
+        <a class="count tags"><span>14</span>Tags</a>
+        <a class="count categories"><span>0</span>Categories</a>
+    </div>
+</div>
+
+
+
+<div class="cube-music cube-sidebar" id="cube-music">
+    <div class="cube-player aplayer" id="cube-player"></div>
+</div>
+<script>
+    (function (window) {
+        window.musicModule = {}
+        window.musicModule.musicConfig = '{"narrow":false,"autoplay":false,"showlrc":3,"theme":"#b7daff","mutex":true,"mode":"circulation","preload":"auto","listmaxheight":"513px","music":[{"title":"Dear friends","author":"TRIPLANE","url":"http://cube-1252774894.cosgz.myqcloud.com/music/source/TRIPLANE - Dear friends.mp3","lrc":"http://cube-1252774894.cosgz.myqcloud.com/music/lrc/Dear friends - TRIPLANE.lrc","pic":"http://cube-1252774894.cosgz.myqcloud.com/music/image/TRIPLANE - Dear friends.jpg"}]}'
+        window.musicModule.lrcConfig = {
+            open: 'Open Lyrics',
+            close: 'Close Lyrics'
+        }
+    })(window)
+</script>
+
+
+
+<div class="cube-recent-posts cube-sidebar" id="cube-recent-posts">
+    <div class="title">
+        <a>Recent Posts</a>
+    </div>
+    <ul class="list">
+        
+        
+        <li>
+            <!-- TODO 如果文章要显示图片，那么在front-matter上添加preview属性(url or path) -->
+            
+            <div class="normal">
+                <p class="index first">
+                    <span>1</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/09/03/项目中必会的git操作/" title="项目中必会的git操作">项目中必会的git操作</a>
+                </p>
+            </div>
+            
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>2</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/09/01/基于koa2-mysql进行数据库的增删改查/" title="基于koa2+mysql进行数据库的增删改查">基于koa2+mysql进行数据库的增删改查</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>3</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/08/03/flutter环境安装/" title="flutter环境安装">flutter环境安装</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>4</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/07/23/生成时间数组/" title="生成时间数组">生成时间数组</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>5</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/07/07/2018定制一下自己的学习路线/" title="2018定制一下自己的学习路线">2018定制一下自己的学习路线</a>
+                </p>
+            </div>
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+
+
+
+<div class="cube-links cube-sidebar" id="cube-links">
+    <div class="title">
+        <a>Links</a>
+    </div>
+    <ul class="list">
+        
+        <li>
+            
+            
+            <img src="http://cube-1252774894.cosgz.myqcloud.com/links/GitHub.png">
+            
+            <a href="https://github.com/crazyTedy" target="_blank">GitHub</a>
+        </li>
+        
+        <li>
+            
+            
+            <img src="https://b-gold-cdn.xitu.io/v3/static/img/logo.a7995ad.svg">
+            
+            <a href="https://juejin.im/user/59c61f24f265da0659432547" target="_blank">掘金</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+<div class="cube-friend-links cube-sidebar" id="cube-friend-links">
+    <div class="title">
+        <a>Friend Links</a>
+    </div>
+    <ul class="list">
+        
+        <li>
+            <!-- TODO change avatar.png to friend.png-->
+            <img src="https://avatars0.githubusercontent.com/u/26136124?s=40&amp;v=4">
+            <a href="http://crazytedy.cn/" target="_blank">我的主页</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+                                </div>
+                            </div>
+                </div>
+                <footer class="cube-footer">
+                    
+© 2017 Atom
+
+<br>
+Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+                </footer>
+                
+                    <!-- inject:script -->
+                    <script src="/js/script.js"></script>
+                    <!-- endinject -->
+                    <div class="cube-loading out"></div>
+    </body>
+
+    </html>
